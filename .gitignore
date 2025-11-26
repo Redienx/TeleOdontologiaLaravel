@@ -12,7 +12,6 @@
 /vendor
 .DS_Store
 .env
-.env.example
 .env.backup
 .env.production
 .phpactor.json
@@ -26,4 +25,5 @@ yarn-error.log
 /.idea
 /.nova
 /.vscode
+/.github
 /.zed

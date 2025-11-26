@@ -8,7 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 class MakeModuleCommand extends Command
 {
     protected $signature = 'make:module {name}';
-    protected $description = 'Crea un módulo con estructura DDD en app/Modules';
+    protected $description = 'Crea un módulo con estructura DDD en app/Modules y la estructura en react correspondiente';
 
     public function handle()
     {
@@ -16,11 +16,22 @@ class MakeModuleCommand extends Command
         $fs = new Filesystem();
 
         $modulePath = base_path("app/Modules/{$name}");
+        $moduleFrontendPath = base_path("resources/js/Modules/{$name}");
 
-        if ($fs->exists($modulePath)) {
+        if ($fs->exists($modulePath and $fs->exists($moduleFrontendPath))) {
             $this->error("El módulo {$name} ya existe.");
             return;
         }
+
+
+        // Crear estructura frontend
+        $foldersFrontend = [
+            "components",
+            "pages",
+            "context",
+            "services",
+            "utils",
+        ];
 
         // Carpetas del módulo
         $folders = [
@@ -38,6 +49,10 @@ class MakeModuleCommand extends Command
 
         foreach ($folders as $folder) {
             $fs->makeDirectory("{$modulePath}/{$folder}", 0755, true);
+        }
+
+        foreach ($foldersFrontend as $folder) {
+            $fs->makeDirectory("{$moduleFrontendPath}/{$folder}", 0755, true);
         }
 
         // Crear archivos base

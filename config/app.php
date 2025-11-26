@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'TeleOdontologia'),
 
     /*
     |--------------------------------------------------------------------------
@@ -125,10 +125,8 @@ return [
 
 
     'providers' => [
-        App\Modules\Odontograma\Infrastructure\Providers\OdontogramaServiceProvider::class,
-        App\Modules\Pacientes\Infrastructure\Providers\PacientesServiceProvider::class,
         App\Modules\Antropometria\Infrastructure\Providers\AntropometriaServiceProvider::class,
-        App\Modules\HistoriaClinica\Infrastructure\Providers\HistoriaClinicaServiceProvider::class,
+        App\Modules\Paciente\Infrastructure\Providers\PacienteServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */
